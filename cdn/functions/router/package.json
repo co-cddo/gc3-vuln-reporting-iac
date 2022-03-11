@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "test": "jest"
+  },
+  "name": "router",
+  "version": "1.0.0",
+  "main": "router.js",
+  "directories": {
+    "test": "."
+  },
+  "author": "OllieJC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/co-cddo/gccc-vrs-iac.git"
+  },
+  "bugs": {
+    "url": "https://github.com/co-cddo/gccc-vrs-iac/issues"
+  },
+  "homepage": "https://github.com/co-cddo/gccc-vrs-iac",
+  "description": ""
+}
