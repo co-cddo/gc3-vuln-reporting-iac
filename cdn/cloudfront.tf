@@ -7,7 +7,7 @@ resource "aws_cloudfront_function" "router" {
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
-  # depends_on = [aws_acm_certificate.cdn]
+  depends_on = [aws_acm_certificate.cdn]
 
   origin {
     domain_name = aws_s3_bucket.vrs_cdn_source_bucket.bucket_regional_domain_name
@@ -23,7 +23,7 @@ resource "aws_cloudfront_distribution" "cdn" {
   comment             = local.primary_domain
   default_root_object = "index.html"
 
-  # aliases = [local.primary_domain, "www.${local.primary_domain}"]
+  aliases = [local.primary_domain, "www.${local.primary_domain}"]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -60,8 +60,8 @@ resource "aws_cloudfront_distribution" "cdn" {
   tags = { "Name" : local.primary_domain }
 
   viewer_certificate {
-    cloudfront_default_certificate = true # false
-    # acm_certificate_arn            = aws_acm_certificate.cdn.arn
-    # ssl_support_method             = "sni-only"
+    cloudfront_default_certificate = false
+    acm_certificate_arn            = aws_acm_certificate.cdn.arn
+    ssl_support_method             = "sni-only"
   }
 }

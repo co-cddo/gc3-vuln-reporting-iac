@@ -1,0 +1,63 @@
+@media (min-width: 48.0625em) {
+  .govuk-header__logo {
+    width: 58%;
+  }
+  .govuk-header__content {
+    width: 42%;
+  }
+}
+
+hr {
+  margin-top: 2em;
+}
+
+.govuk-header__logo {
+  padding-right: 0;
+}
+
+strong.phase-nonprod {
+
+  background: #df0606;
+}
+
+.feedback-container {
+  text-align: center;
+  margin-top: 1em;
+}
+.feedback-container iframe {
+  min-height: 800px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.config-container {
+  margin-top: 1em;
+}
+.config-container iframe {
+  min-height: 975px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.acknowledgement:last-child {
+  border-bottom: 1px solid black;
+}
+.acknowledgement {
+  border-top: 1px solid black;
+  padding: 1em 0;
+}
+
+.hackerone-form-container {
+
+}
+
+code {
+    background: #efefef;
+    border: #efefef;
+    border-radius: 0.3em;
+    padding: 0 0.2em;
+}
+
+.back-button {
+  margin-top: 2em;
+}

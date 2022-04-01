@@ -16,30 +16,54 @@ resource "aws_route53_zone" "vrs-np-sec-gov-uk" {
   )
 }
 
-data "aws_cloudfront_distribution" "cdn" {
+data "aws_cloudfront_distribution" "nonprod-cdn" {
   id = "ETHO2U176O6VX"
+}
+
+resource "aws_route53_record" "a" {
+  zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
+  name    = ""
+  type    = "A"
+
+  alias {
+    name                   = data.aws_cloudfront_distribution.nonprod-cdn.domain_name
+    zone_id                = data.aws_cloudfront_distribution.nonprod-cdn.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "aaaa" {
+  zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
+  name    = ""
+  type    = "AAAA"
+
+  alias {
+    name                   = data.aws_cloudfront_distribution.nonprod-cdn.domain_name
+    zone_id                = data.aws_cloudfront_distribution.nonprod-cdn.hosted_zone_id
+    evaluate_target_health = false
+  }
 }
 
 resource "aws_route53_record" "www-a" {
   zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
-  name    = local.domain
+  name    = "www"
   type    = "A"
 
   alias {
-    name                   = data.aws_cloudfront_distribution.cdn.domain_name
-    zone_id                = data.aws_cloudfront_distribution.cdn.hosted_zone_id
+    name                   = data.aws_cloudfront_distribution.nonprod-cdn.domain_name
+    zone_id                = data.aws_cloudfront_distribution.nonprod-cdn.hosted_zone_id
     evaluate_target_health = false
   }
 }
 
 resource "aws_route53_record" "www-aaaa" {
   zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
-  name    = local.domain
+  name    = "www"
   type    = "AAAA"
 
   alias {
-    name                   = data.aws_cloudfront_distribution.cdn.domain_name
-    zone_id                = data.aws_cloudfront_distribution.cdn.hosted_zone_id
+    name                   = data.aws_cloudfront_distribution.nonprod-cdn.domain_name
+    zone_id                = data.aws_cloudfront_distribution.nonprod-cdn.hosted_zone_id
     evaluate_target_health = false
   }
 }
