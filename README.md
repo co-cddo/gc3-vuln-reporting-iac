@@ -6,9 +6,7 @@ Government Cyber Coordination Centre - Vulnerability Reporting Service - Infrast
 ![Terraform Version v1.0.11](https://img.shields.io/badge/Terraform-v1.0.11-blueviolet?style=for-the-badge&logo=terraform)
 ![Last commit image](https://img.shields.io/github/last-commit/co-cddo/domain-iac?style=for-the-badge&logo=github)
 
-Infrastructure as code (Terraform) for the vulnerability-reporting.service.security.gov.uk* running on AWS.
-
-_*pending approval._
+Infrastructure as code (Terraform) for the `vulnerability-reporting.(nonprod-)?service.security.gov.uk` running on AWS.
 
 ## CloudFront CDN
 
