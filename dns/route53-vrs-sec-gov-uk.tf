@@ -72,6 +72,7 @@ resource "aws_route53_record" "prod-google-console" {
   zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
   name    = "."
   type    = "TXT"
+  ttl     = "300"
   records = ["google-site-verification=25QFZwLwS94r74j_X-XV8mhqL5CN-_4tHpQoDqhzJAc"]
 }
 
