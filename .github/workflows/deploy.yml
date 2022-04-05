@@ -25,6 +25,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
       
-      - name: Test STS
+      - name: Install tfenv
         run: |
-          aws sts get-caller-identity
+          git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+          echo "$HOME/.tfenv/bin" >> $GITHUB_PATH
+          
+      - name: Install Terraform
+        run: |
+          tfenv install
+          terraform --version
+          
+      - name: Init DNS
+        working-directory: dns/
+        run: |
+          terraform init -no-color -input=false
+          terraform validate -no-color
