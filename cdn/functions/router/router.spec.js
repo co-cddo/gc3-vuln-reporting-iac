@@ -2,7 +2,7 @@
 
 const viewer_request = require("./router.js");
 
-fixture_1 = {
+fixture_nonprod = {
   context: {
     distributionDomainName:'d123.cloudfront.net',
     eventType:'viewer-request',
@@ -12,26 +12,51 @@ fixture_1 = {
   },
   request: {
     method: 'GET',
-    uri: '/index.php',
-    querystring: {},
+    uri: '/index.html',
     headers: {
       host: {
-        value:'invalid.example'
+        value: 'vulnerability-reporting.nonprod-service.security.gov.uk'
       }
-    },
-    cookies: {}
+    }
+  }
+}
+
+fixture_prod = {
+  context: {
+    distributionDomainName:'d123.cloudfront.net',
+    eventType:'viewer-request',
+  },
+  viewer: {
+    ip:'1.2.3.4'
+  },
+  request: {
+    method: 'GET',
+    uri: '/',
+    headers: {
+      host: {
+        value: 'vulnerability-reporting.service.security.gov.uk'
+      }
+    }
   }
 }
 
 describe("origin_request", function() {
-  test('fixture_1', function(done) {
-    var res = viewer_request(fixture_1);
+  test('nonprod', function(done) {
+    var res = viewer_request(fixture_nonprod);
 
-    console.log(res);
-
-    expect(res).not.toBe(fixture_1.request);
+    expect(res).not.toBe(fixture_nonprod.request);
     expect(res.statusCode).toBe(401);
     expect(Object.keys(res["headers"])).toStrictEqual(["www-authenticate"]);
+
+    done();
+  });
+
+  test('prod', function(done) {
+    var res = viewer_request(fixture_prod);
+
+    expect(res).not.toBe(fixture_prod.request);
+    expect(res.statusCode).toBe(307);
+    expect(Object.keys(res["headers"])).toStrictEqual(["location"]);
 
     done();
   });
