@@ -34,9 +34,48 @@ jobs:
         run: |
           tfenv install
           terraform --version
-          
+
       - name: Init DNS
         working-directory: dns/
         run: |
           terraform init -no-color -input=false
           terraform validate -no-color
+
+      - name: Deploy DNS
+        working-directory: dns/
+        run: |
+          terraform apply -auto-approve
+
+      - name: Init CDN
+        working-directory: cdn/
+        run: |
+          terraform init -no-color -input=false
+          terraform validate -no-color
+
+      - name: Deploy nonprod CDN
+        working-directory: cdn/
+        run: |
+          terraform workspace select nonprod
+          terraform apply -auto-approve
+
+      - name: Test nonprod CDN
+        run: |
+          if curl -I https://vulnerability-reporting.nonprod-service.security.gov.uk/ | grep 401; then
+              echo 401 returned as expected
+          else
+              exit 1
+          fi
+
+      - name: Deploy prod CDN
+        working-directory: cdn/
+        run: |
+          terraform workspace select prod
+          terraform apply -auto-approve
+
+      - name: Test prod CDN
+        run: |
+          if curl -I https://vulnerability-reporting.service.security.gov.uk/ | grep 307; then
+              echo 307 returned as expected
+          else
+              exit 1
+          fi
