@@ -68,6 +68,13 @@ resource "aws_route53_record" "www-aaaa-prod" {
   }
 }
 
+resource "aws_route53_record" "prod-google-console" {
+  zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
+  name    = "."
+  type    = "TXT"
+  records = ["google-site-verification=25QFZwLwS94r74j_X-XV8mhqL5CN-_4tHpQoDqhzJAc"]
+}
+
 module "vrs-aws-r53-parked-domain" {
   source            = "github.com/co-cddo/aws-route53-parked-govuk-domain//terraform?ref=829478ba8ed41863d7e5f526475de3e09171da4d"
   zone_id           = aws_route53_zone.vrs-sec-gov-uk.zone_id
