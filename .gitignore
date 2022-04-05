@@ -2,6 +2,7 @@
 **/.terraform/*
 **/.terraform
 **/.terraform*
+**/*.tfvars
 **/personal
 
 **/node_modules

@@ -3,7 +3,7 @@ resource "aws_cloudfront_function" "router" {
   runtime = "cloudfront-js-1.0"
   comment = "${local.origin_id}-Router"
   publish = true
-  code    = file("functions/router/router.js")
+  code    = templatefile("functions/router/router.js", { basicauthstring = var.basicauthstring })
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
