@@ -7,6 +7,10 @@
   }
 }
 
+span.govuk-header__logotype-text {
+    font-size: 26px;
+}
+
 hr {
   margin-top: 2em;
 }
