@@ -67,12 +67,12 @@ function handler(event) {
       }
     }
 
-    if (
+    /*if (
       host == "vulnerability-reporting.service.security.gov.uk" &&
       !uri.match(/^\/?(?:assets\/|coming-soon)/)
     ) {
       return redirect("https://vulnerability-reporting.service.security.gov.uk/coming-soon");
-    }
+    }*/
 
     if (uri.match(/^(?:\/.well[-_]known)?\/security(?:\.txt)?$/)) {
       request.uri = "/.well-known/security.txt";

@@ -54,10 +54,7 @@ describe("origin_request", function() {
   test('prod', function(done) {
     var res = viewer_request(fixture_prod);
 
-    expect(res).not.toBe(fixture_prod.request);
-    expect(res.statusCode).toBe(307);
-    expect(Object.keys(res["headers"])).toStrictEqual(["location"]);
-
+    expect(res).toBe(fixture_prod.request);
     done();
   });
 });
