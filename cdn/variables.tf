@@ -14,6 +14,21 @@ locals {
       "Mohd.Danish Abid",
       "2022-01-17",
       "Potential directory security misconfiguration on gdscareers.gov.uk"
+    ],
+    [
+      "Ayush Juneja",
+      "2022-05-27",
+      "Potential vulnerability with GOV.UK contact forms"
+    ],
+    [
+      "Michael Minchinton",
+      "2022-06-06",
+      "Cached URLs linking to sensitive files on a GOV.UK service"
+    ],
+    [
+      "Tom Samson",
+      "2022-06-06",
+      "Potential vulnerability to Log4j exploit in GOV.UK hosted application"
     ]
   ]
 
