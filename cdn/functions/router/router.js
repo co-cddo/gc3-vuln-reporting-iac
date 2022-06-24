@@ -87,7 +87,7 @@ function handler(event) {
       return redirect("https://www.gov.uk");
     }
 
-    if (uri.match(/^\/?(?:submit|acknowledgements|feedback|config|coming-soon)$/)) {
+    if (uri.match(/^\/?(?:submit|submit2|acknowledgements|feedback|config|coming-soon)$/)) {
       request.uri += ".html";
       // file hosted in S3
       return request;
