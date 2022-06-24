@@ -27,12 +27,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-2
-      
+
       - name: Install tfenv
         run: |
           git clone https://github.com/tfutils/tfenv.git ~/.tfenv
           echo "$HOME/.tfenv/bin" >> $GITHUB_PATH
-          
+
       - name: Install Terraform
         run: |
           tfenv install
@@ -77,8 +77,8 @@ jobs:
 
       - name: Test prod CDN
         run: |
-          if curl -I https://vulnerability-reporting.service.security.gov.uk/ | grep 307; then
-              echo 307 returned as expected
+          if curl -I https://vulnerability-reporting.service.security.gov.uk/ | grep 200; then
+              echo 200 returned as expected
           else
               exit 1
           fi
