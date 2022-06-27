@@ -72,6 +72,7 @@ resource "aws_route53_record" "security_txt" {
   zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
   name    = "_security"
   type    = "TXT"
+  ttl     = 1800
 
   records = [
     "security_policy=https://vulnerability-reporting.service.security.gov.uk/.well-known/security.txt",
