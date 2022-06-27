@@ -69,7 +69,7 @@ resource "aws_route53_record" "www-aaaa-prod" {
 }
 
 resource "aws_route53_record" "security_txt-prod" {
-  zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
+  zone_id = aws_route53_zone.vrs-sec-gov-uk.zone_id
   name    = "_security"
   type    = "TXT"
   ttl     = 1800
