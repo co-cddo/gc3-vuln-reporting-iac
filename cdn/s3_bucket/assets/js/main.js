@@ -28,6 +28,7 @@ function submit_display_secondary() {
 }
 
 var submit_iframe_check;
+var submit_iframe_interval = 4500;
 
 function hackerone_check_form() {
   document.getElementById("submit-loading").classList.remove("hidden");
@@ -45,5 +46,6 @@ function hackerone_check_form() {
     } else {
       submit_display_default_form();
     }
-  }, 1000);
+    submit_iframe_interval = 1000;
+  }, submit_iframe_interval);
 }
