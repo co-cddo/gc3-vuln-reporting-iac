@@ -42,5 +42,5 @@ function hackerone_check_form() {
     } else {
       submit_display_default_form();
     }
-  }, 2500);
+  }, 3500);
 }
