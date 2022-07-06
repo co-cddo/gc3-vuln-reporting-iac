@@ -36,9 +36,13 @@ function hackerone_check_form() {
     var load_secondary = true;
     var iframes = document.getElementsByTagName("iframe");
     if (iframes.length == 1) {
-      if (iframes[0].clientHeight > 1000) {
-        load_secondary = false;
-        clearInterval(submit_iframe_check);
+      try {
+        if (parseInt(iframes[0].style.height.replace("px", "")) > 1000) {
+          load_secondary = false;
+          clearInterval(submit_iframe_check);
+        }
+      } catch (e) {
+        console.log("hackerone_check_form", e);
       }
     }
     if (load_secondary) {
