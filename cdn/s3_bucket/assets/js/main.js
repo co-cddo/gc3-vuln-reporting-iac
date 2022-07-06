@@ -33,7 +33,7 @@ function hackerone_check_form() {
     var load_secondary = true;
     var iframes = document.getElementsByTagName("iframe");
     if (iframes.length == 1) {
-      if (iframes[0].clientHeight != 1000) {
+      if (iframes[0].clientHeight > 1000) {
         load_secondary = false;
       }
     }

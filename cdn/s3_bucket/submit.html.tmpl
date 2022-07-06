@@ -21,7 +21,7 @@
     <link href="/assets/css/main.css" rel="stylesheet" media="all" />
     <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
   </head>
-  <body class="govuk-template__body ">
+  <body class="govuk-template__body " onload="hackerone_check_form()">
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
 
@@ -67,7 +67,7 @@
         </ol>
       </div>
 
-      <main class="govuk-body" id="main-content" role="main" onload="hackerone_check_form()">
+      <main class="govuk-body" id="main-content" role="main">
         <h1>Submit</h1>
         <noscript>
           <p>Contact <span class="email">vulnerability-reporting[at]cabinetoffice.gov.uk</span>.</p>
