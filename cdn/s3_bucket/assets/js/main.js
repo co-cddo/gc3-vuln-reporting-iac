@@ -27,14 +27,17 @@ function submit_display_secondary() {
   document.getElementById("submit-secondary-form").classList.remove("hidden");
 }
 
+var submit_iframe_check;
+
 function hackerone_check_form() {
   document.getElementById("submit-loading").classList.remove("hidden");
-  setTimeout(function() {
+  submit_iframe_check = setInterval(function() {
     var load_secondary = true;
     var iframes = document.getElementsByTagName("iframe");
     if (iframes.length == 1) {
       if (iframes[0].clientHeight > 1000) {
         load_secondary = false;
+        clearInterval(submit_iframe_check);
       }
     }
     if (load_secondary) {
@@ -42,5 +45,5 @@ function hackerone_check_form() {
     } else {
       submit_display_default_form();
     }
-  }, 3500);
+  }, 1000);
 }
