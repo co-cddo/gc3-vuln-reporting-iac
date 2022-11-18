@@ -44,10 +44,11 @@ function handler(event) {
       return request;
     }
 
-    if (uri.match(/^\/.well[-_]known\/teapot$/)) {
+    if (uri.match(/^\/.well[-_]known\/(tea(pot)?|☕|%e2%98%95|coffee)/)) {
       return {
           statusCode: 418,
-          statusDescription: "I'm a teapot"
+          statusDescription: "I'm a teapot",
+          body: "I'm a teapot\nhttps://www.rfc-editor.org/rfc/rfc2324"
       };
     }
 
@@ -66,13 +67,6 @@ function handler(event) {
           return return401();
       }
     }
-
-    /*if (
-      host == "vulnerability-reporting.service.security.gov.uk" &&
-      !uri.match(/^\/?(?:assets\/|coming-soon)/)
-    ) {
-      return redirect("https://vulnerability-reporting.service.security.gov.uk/coming-soon");
-    }*/
 
     if (uri.match(/^(?:\/.well[-_]known)?\/security(?:\.txt)?$/)) {
       request.uri = "/.well-known/security.txt";

@@ -70,39 +70,14 @@
       <main class="govuk-body" id="main-content" role="main">
         <h1>Configuration</h1>
         <div>
-          <p>This guidance from the Government Cyber Coordination Centre (GCCC) is for all UK government organisations to configure the Vulnerability Reporting Service (VRS) for their websites and web services.</p>
-          <p>Step 1 describes configuring the security.txt signpost, and step 2 is for submitting contact details to GCCC so they know where to direct reports against different assets.</p>
+          <p>This guidance is for all UK government organisations to configure the Vulnerability Reporting Service (VRS) for their websites and web services.</p>
+          <p>Step 1 describes configuring the security.txt signpost, and step 2 is for submitting contact details so the VRS team know where to direct reports against different assets.</p>
 
           <hr><br/>
 
           <h3 class="govuk-heading-m" id="securitytxt">Step 1: implement a security.txt</h3>
-          <p>A security.txt file (<a href="https://www.rfc-editor.org/rfc/rfc9116">RFC 9116</a>) is a way to direct security researchers to this VRS.</p>
-
-          <p>GCCC have a central deployment of the security.txt file so that we only have to keep one place up to date. The public <code>co-cddo/gccc-vrs-iac</code> repo is where it’s maintained.</p>
-
-          <p>URL: <strong><code>${securitytxt_url}</code></strong></p>
-          <p>You should use the URL in either:</p>
-
-          <ul>
-            <li>the origin for your site’s <code>/.well-known/security.txt</code></li>
-            <li>the destination of a redirect for <code>/.well-known/security.txt</code></li>
-          </ul>
-
-          <h4 class="govuk-heading-s" id="redirect-note">Redirect mechanism</h4>
-
-          <p>Implement in the following order to ensure the best capability with all user agents:<p>
-
-          <ol>
-            <li>Server-side redirect (302 status and <code>Location</code> header in response)</li>
-            <li>Client-side HTML (meta <code>http-equiv=refresh</code> tag in the head)</li>
-            <li>Client-side JavaScript redirect (<code>window.location.href</code>) - this won’t work if JavaScript is disabled, so you should display a link as well</li>
-          </ol>
-
-          <p>As well as <code>/.well-known/security.txt</code> you may optionally configure <code>/security.txt</code>.</p>
-
-          <h4 class="govuk-heading-s" id="hosting-note">Hosting your own</h4>
-
-          <p>GCCC does not recommend hosting the security.txt file yourself, but if you are hosting it yourself, you should host at <code>/.well-known/security.txt</code> and optionally <code>/security.txt</code>. You should use a <code>text/plain</code> content type and follow the <a href="https://securitytxt.org/">current security.txt guidance</a>.</p>
+          <p>There is a central deployment of the security.txt file to make it easier for you to implement on your systems and services.</p>
+          <p>You can find more about how to implement a signpost, including example code, here: <a href="https://github.com/co-cddo/implement-security.txt">https://github.com/co-cddo/implement-security.txt</a></p>
 
           <hr><br/>
 
