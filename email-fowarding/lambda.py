@@ -61,14 +61,18 @@ def get_message_from_s3(message_id, destinations):
 
 
 def create_message(file_dict, destinations):
-    recipient = os.environ["MailRecipient"]
+    system_recipient = ""
+    group = None
 
-    system_sender = ""
-    system_sender_domain = os.environ["MailSenderDomain"]
+    system_domain = os.environ["MailSenderDomain"]
+    no_reply_address = f"no-reply@{system_domain}"
+
     if "contact@" in destinations:
-        system_sender = f"contact@{system_sender_domain}"
+        system_recipient = f"contact@{system_domain}"
+        group = "10979637972369"
     elif "report@" in destinations:
-        system_sender = f"report@{system_sender_domain}"
+        system_recipient = f"report@{system_domain}"
+        group = "10980471236113"
 
     # Parse the email body.
     mailobject = email.message_from_bytes(file_dict["file"])
@@ -79,23 +83,27 @@ def create_message(file_dict, destinations):
     if sender is None:
         sender = mailobject.get("Return-Path")
     if sender is None:
-        sender = system_sender
+        sender = no_reply_address
 
     sender_email = sender
     if "<" in sender_email:
         sender_email = sender_email.split("<", 1)[1].strip(">")
 
+    zendesk_reply = False
+
     new_headers = []
     for x in mailobject._headers:
         if x[0] in ["Received-SPF", "Authentication-Results"]:
             new_headers.append((f"X-SES-{x[0]}", x[1]))
+        if not zendesk_reply and x[0] in ["References", "In-Reply-To"]:
+            if "zendesk.com" in x[1]:
+                zendesk_reply = True
         if x[0] not in [
             "Received-SPF",
             "Authentication-Results",
             "DKIM-Signature",
             "From",
             "Reply-To",
-            "In-Reply-To",
             "Return-Path",
             "To",
         ]:
@@ -103,21 +111,25 @@ def create_message(file_dict, destinations):
 
     mailobject._headers = new_headers
 
-    # for x in mailobject.get_payload():
-    #    if x.get_content_type().startswith("text/"):
-    #        original_body = x.get_payload()
-    #        x.set_payload(f"#requester {sender_email}\n\n{original_body}")
+    if not zendesk_reply:
+        for x in mailobject.get_payload():
+            if x.get_content_type().startswith("text/plain"):
+                original_body = x.get_payload()
+                inc_group = f"#group {group}\n" if group else ""
+                x.set_payload(
+                    f"#requester {sender_email}\n{inc_group}\n{original_body}"
+                )
 
-    mailobject.add_header("From", system_sender)
+    mailobject.add_header("From", no_reply_address)
     mailobject.add_header("Reply-To", sender)
-    mailobject.add_header("To", recipient)
+    mailobject.add_header("To", system_recipient)
 
     b64 = base64.standard_b64encode(mailobject.as_bytes())
     print("b64:", b64)
 
     message = {
-        "Source": system_sender,
-        "Destinations": recipient,
+        "Source": no_reply_address,
+        "Destinations": os.environ["MailRecipient"],
         "Data": mailobject.as_string(),
     }
 
