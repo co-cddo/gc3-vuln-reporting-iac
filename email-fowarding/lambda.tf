@@ -23,7 +23,7 @@ resource "aws_lambda_function" "lambda" {
 
   environment {
     variables = {
-      Region           = "eu-west-2"
+      Region           = "eu-west-1"
       MailS3Bucket     = "mailbox.${local.email_domain}"
       MailSenderDomain = local.email_domain
       MailRecipient    = var.mail_recipient

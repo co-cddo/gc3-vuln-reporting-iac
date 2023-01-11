@@ -114,6 +114,9 @@ def create_message(file_dict, destinations):
     if not zendesk_reply:
         for x in mailobject.get_payload():
             if x.get_content_type().startswith("text/plain"):
+                cte = x["Content-Transfer-Encoding"] if "Content-Transfer-Encoding" in x else None
+                if cte and cte == "base64":
+                    continue
                 original_body = x.get_payload()
                 inc_group = f"#group {group}\n" if group else ""
                 x.set_payload(

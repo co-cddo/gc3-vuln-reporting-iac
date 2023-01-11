@@ -90,3 +90,11 @@ jobs:
           terraform validate -no-color
           terraform workspace select nonprod
           terraform apply -auto-approve -var="mail_recipient=${{ secrets.EMAILRECIPIENT }}"
+
+      - name: Deploy nonprod email-forwarding
+        working-directory: email-fowarding/
+        run: |
+          terraform init -no-color -input=false
+          terraform validate -no-color
+          terraform workspace select prod
+          terraform apply -auto-approve -var="mail_recipient=${{ secrets.EMAILRECIPIENT }}"
