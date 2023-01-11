@@ -16,6 +16,8 @@ import email
 import re
 import json
 import base64
+import time
+import random
 
 from botocore.exceptions import ClientError
 from botocore.client import Config
@@ -25,29 +27,16 @@ from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
 region = os.environ["Region"]
+incoming_email_bucket = os.environ["MailS3Bucket"]
+
+# Create a new S3 client.
+client_s3 = boto3.client("s3", config=Config(signature_version="s3v4"))
 
 
-def get_message_from_s3(message_id, destinations):
-
-    incoming_email_bucket = os.environ["MailS3Bucket"]
-
-    incoming_email_prefix = ""
-    if "contact@" in destinations:
-        incoming_email_prefix = "contact"
-    elif "report@" in destinations:
-        incoming_email_prefix = "report"
-
-    if incoming_email_prefix:
-        object_path = incoming_email_prefix + "/" + message_id
-    else:
-        object_path = message_id
-
+def get_message_from_s3(object_path):
     object_http_path = (
         f"https://s3.{region}.amazonaws.com/{incoming_email_bucket}/{object_path}"
     )
-
-    # Create a new S3 client.
-    client_s3 = boto3.client("s3", config=Config(signature_version="s3v4"))
 
     # Get the email object from the S3 bucket.
     object_s3 = client_s3.get_object(Bucket=incoming_email_bucket, Key=object_path)
@@ -77,7 +66,9 @@ def create_message(file_dict, destinations):
     # Parse the email body.
     mailobject = email.message_from_bytes(file_dict["file"])
 
-    sender = mailobject.get("From")
+    sender = mailobject.get("X-Original-Sender")
+    if sender is None:
+        sender = mailobject.get("From")
     if sender is None:
         sender = mailobject.get("Reply-To")
     if sender is None:
@@ -164,20 +155,67 @@ def send_email(message):
 
 
 def lambda_handler(event, context):
+    # initial delay waiting for s3
+    time.sleep(2)
+    
     # Get the unique ID of the message. This corresponds to the name of the file
     # in S3.
     message_id = event["Records"][0]["ses"]["mail"]["messageId"]
-    destinations = ",".join(event["Records"][0]["ses"]["mail"]["destination"]).lower()
+    destinations = ",".join(event["Records"][0]["ses"]["receipt"]["recipients"]).lower()
     # print(f"Received message ID {message_id}")
 
     print(json.dumps(event, default=str))
 
     # Retrieve the file from the S3 bucket.
-    file_dict = get_message_from_s3(message_id, destinations)
+    incoming_email_prefix = ""
+    if "contact@" in destinations:
+        incoming_email_prefix = "contact"
+    elif "report@" in destinations:
+        incoming_email_prefix = "report"
 
-    # Create the message.
-    message = create_message(file_dict, destinations)
+    if incoming_email_prefix:
+        object_path = incoming_email_prefix + "/" + message_id
+    else:
+        object_path = message_id
 
-    # Send the email and print the result.
-    result = send_email(message)
-    print(result)
+    print(json.dumps({
+        "incoming_email_prefix": incoming_email_prefix, 
+        "incoming_email_bucket": incoming_email_bucket, 
+        "object_path": object_path
+    }, default=str))
+
+    file_dict = get_message_from_s3(object_path)
+    
+    # Check for tag
+    time.sleep(float(random.randrange(50, 501)/100))
+    tag_resp = client_s3.get_object_tagging(
+        Bucket=incoming_email_bucket,
+        Key=object_path
+    )
+    email_processed = False
+    if "TagSet" in tag_resp:
+        for kv in tag_resp["TagSet"]:
+            if kv["Key"] == "processed":
+                email_processed = True
+                break
+
+    if not email_processed:
+        tag_proc_resp = client_s3.put_object_tagging(
+            Bucket=incoming_email_bucket,
+            Key=object_path,
+            Tagging={
+                'TagSet': [
+                    {
+                        'Key': 'processed',
+                        'Value': 'true'
+                    },
+                ]
+            },
+        )
+
+        # Create the message.
+        message = create_message(file_dict, destinations)
+
+        # Send the email and print the result.
+        result = send_email(message)
+        print(result)
