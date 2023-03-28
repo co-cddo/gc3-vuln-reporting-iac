@@ -77,7 +77,6 @@ resource "aws_route53_record" "security_txt" {
   records = [
     "security_policy=https://vulnerability-reporting.service.security.gov.uk/.well-known/security.txt",
     "security_contact=https://vulnerability-reporting.service.security.gov.uk/submit",
-    "security_contact=mailto:vulnerability-reporting@cabinetoffice.gov.uk"
   ]
 }
 

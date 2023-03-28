@@ -70,22 +70,22 @@
       <main class="govuk-body" id="main-content" role="main">
         <h1>Submit</h1>
         <noscript>
-          <p>Contact <span class="email">vulnerability-reporting[at]cabinetoffice.gov.uk</span>.</p>
+          <p><a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" role="button" draggable="false" class="govuk-button" data-module="govuk-button" target="_blank" rel="nofollow noreferrer noopener">Submit via HackerOne here</a></p>
         </noscript>
         <div id="submit-loading" class="hidden">
           Loading...
         </div>
         <script type="text/javascript">document.getElementById("submit-loading").classList.remove("hidden");</script>
         <div id="submit-default-form" class="hidden">
-          <p>If the below form doesn't load correctly, try <a href="https://hackerone.com/7c8cf034-0210-466b-9796-b14b2c7746a0/embedded_submissions/new" rel="nofollow noreferrer noopener" target="_blank">this link to the submission form</a>.<br/>
-            Alternatively, contact <span class="email">vulnerability-reporting[at]cabinetoffice.gov.uk</span>.</p>
+          <p>
+            If the below form doesn't load correctly, try <a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" rel="nofollow noreferrer noopener" target="_blank">this link to the submission form</a>.<br/>
+          </p>
           <div class="hackerone-form-container">
-            <script onerror="hackerone_onerror()" async src="https://hackerone.com/7c8cf034-0210-466b-9796-b14b2c7746a0/embedded_submissions/script" data-url="https://hackerone.com/7c8cf034-0210-466b-9796-b14b2c7746a0/embedded_submissions/new" data-name="h1-embedded-submission" type="text/javascript"></script>
+            <script onerror="hackerone_onerror()" async src="https://hackerone.com/${hackerone_form_id}/embedded_submissions/script" data-url="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" data-name="h1-embedded-submission" type="text/javascript"></script>
           </div>
         </div>
         <div id="submit-secondary-form" class="hidden">
-          <a href="https://hackerone.com/7c8cf034-0210-466b-9796-b14b2c7746a0/embedded_submissions/new" role="button" draggable="false" class="govuk-button" data-module="govuk-button" target="_blank" rel="nofollow noreferrer noopener">Submit via HackerOne here</a>
-          <p>Alternatively, contact <span class="email">vulnerability-reporting[at]cabinetoffice.gov.uk</span>.</p>
+          <a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" role="button" draggable="false" class="govuk-button" data-module="govuk-button" target="_blank" rel="nofollow noreferrer noopener">Submit via HackerOne here</a>
         </div>
         <a href="/" role="button" draggable="false" class="govuk-button back-button" data-module="govuk-button">Back</a>
       </main>

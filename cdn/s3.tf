@@ -36,19 +36,20 @@ locals {
 }
 
 module "template_files" {
-  source = "hashicorp/dir/template"
+  source   = "hashicorp/dir/template"
   base_dir = "./s3_bucket"
   template_vars = {
     # Pass in any values that you wish to use in your templates.
-    workspace = terraform.workspace
-    securitytxt_url = "https://vulnerability-reporting.service.security.gov.uk/.well-known/security.txt"
-    policy_url = "https://${local.primary_domain}"
-    contact_url = "https://${local.primary_domain}/submit"
-    ack_url = "https://${local.primary_domain}/acknowledgements"
-    last_updated = local.current_time
-    expiry_date = local.three_months
-    acknowledgements = local.acknowledgements
-    footerlinks = local.footerlinks
+    workspace         = terraform.workspace
+    securitytxt_url   = "https://vulnerability-reporting.service.security.gov.uk/.well-known/security.txt"
+    hackerone_form_id = "2e6793b1-d580-4172-9ba3-04c98cdfb478"
+    policy_url        = "https://${local.primary_domain}"
+    contact_url       = "https://${local.primary_domain}/submit"
+    ack_url           = "https://${local.primary_domain}/acknowledgements"
+    last_updated      = local.current_time
+    expiry_date       = local.three_months
+    acknowledgements  = local.acknowledgements
+    footerlinks       = local.footerlinks
   }
 }
 
