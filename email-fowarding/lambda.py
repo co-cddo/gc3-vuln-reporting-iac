@@ -52,6 +52,7 @@ def get_message_from_s3(object_path):
 def create_message(file_dict, destinations):
     system_recipient = ""
     group = None
+    destination_override = None
 
     system_domain = os.environ["MailSenderDomain"]
     no_reply_address = f"no-reply@{system_domain}"
@@ -62,6 +63,8 @@ def create_message(file_dict, destinations):
     elif "report@" in destinations:
         system_recipient = f"report@{system_domain}"
         group = "10980471236113"
+    elif "ollie@" in destinations:
+        destination_override = os.environ["OllieOverrideEmail"]
 
     # Parse the email body.
     mailobject = email.message_from_bytes(file_dict["file"])
@@ -123,7 +126,7 @@ def create_message(file_dict, destinations):
 
     message = {
         "Source": no_reply_address,
-        "Destinations": os.environ["MailRecipient"],
+        "Destinations": destination_override if destination_override != None else os.environ["MailRecipient"],
         "Data": mailobject.as_string(),
     }
 
