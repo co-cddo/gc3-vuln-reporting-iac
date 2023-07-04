@@ -11,3 +11,7 @@ locals {
 variable "mail_recipient" {
   type    = string
 }
+
+variable "ollie_override_email" {
+  type    = string
+}
