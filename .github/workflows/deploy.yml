@@ -82,19 +82,3 @@ jobs:
           else
               exit 1
           fi
-
-      - name: Deploy nonprod email-forwarding
-        working-directory: email-fowarding/
-        run: |
-          terraform init -no-color -input=false
-          terraform validate -no-color
-          terraform workspace select nonprod
-          terraform apply -auto-approve -var="mail_recipient=${{ secrets.EMAILRECIPIENT }}" -var="ollie_override_email=${{ secrets.OLLIE_OVERRIDE_EMAIL }}"
-
-      - name: Deploy prod email-forwarding
-        working-directory: email-fowarding/
-        run: |
-          terraform init -no-color -input=false
-          terraform validate -no-color
-          terraform workspace select prod
-          terraform apply -auto-approve -var="mail_recipient=${{ secrets.EMAILRECIPIENT }}" -var="ollie_override_email=${{ secrets.OLLIE_OVERRIDE_EMAIL }}"

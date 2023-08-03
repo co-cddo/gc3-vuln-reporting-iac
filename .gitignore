@@ -4,10 +4,12 @@
 **/.terraform*
 **/*.tfvars
 **/personal
-
+**/.target
 **/*.zip
 
 **/node_modules
+**/__pycache__
+**/*.pyc
 **/package-lock.json
 
 # .tfstate files
