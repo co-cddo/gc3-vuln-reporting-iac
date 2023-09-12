@@ -80,9 +80,9 @@ resource "aws_route53_record" "security_txt-prod" {
   ]
 }
 
-module "co-cddo-aws-r53-parked-domain" {
+module "co-cddo-aws-r53-parked-domain-prod" {
   source  = "github.com/co-cddo/aws-route53-parked-govuk-domain//terraform"
-  zone_id = aws_route53_zone.vrs-np-sec-gov-uk.zone_id
+  zone_id = aws_route53_zone.vrs-sec-gov-uk.zone_id
   additional_txt_records = [
     "security_policy=https://vulnerability-reporting.service.security.gov.uk/.well-known/security.txt",
     "google-site-verification=25QFZwLwS94r74j_X-XV8mhqL5CN-_4tHpQoDqhzJAc",
