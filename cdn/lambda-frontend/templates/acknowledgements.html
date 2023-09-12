@@ -1,0 +1,22 @@
+{% extends "_primary.html" %}
+
+{% block content %}
+<main class="govuk-main-wrapper govuk-body " id="main-content" role="main">
+  <h2 class="govuk-heading-l">Acknowledgements</h2>
+
+  <div>
+    {%- set years_shown = [] %}
+    {%- for ack in acknowledgements %}
+      {%- if ack["year"] not in years_shown %}
+        {%- do years_shown.append(ack["year"]) %}
+        <h2 id="year-{{ ack['year'] }}" class="govuk-heading-l year-header">{{ ack["year"] }}</h2>
+      {%- endif %}
+    <ul id="{{ ack['id'] }}">
+      <li><b>[{{ ack["date"] }}]: {{ ack["name"] }}</b></li>
+      <li>{{ ack["vulnerability"] }}</li>
+    </ul>
+    {%- endfor %}
+  </div>
+
+</main>
+{% endblock %}

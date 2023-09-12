@@ -1,0 +1,46 @@
+{% extends "_primary.html" %}
+
+{% block content %}
+<main class="govuk-main-wrapper govuk-body " id="main-content" role="main">
+  <h2 class="govuk-heading-l">Government Cyber Coordination Centre (GC3) Vulnerability Reporting Policy</h2>
+
+  <div>
+    <h3 class="govuk-heading-m">Scope</h3>
+    <ul>
+      <li>“In scope” vulnerabilities must be original, previously unreported, and not already discovered by internal procedures.</li>
+      <li>Volumetric vulnerabilities are not in scope; this means that simply overwhelming a service with a high volume of requests is not in scope.</li>
+      <li>Reports of non-exploitable vulnerabilities are not in scope.</li>
+      <li>Reports indicating that our services do not fully align with “best practice” (for example, missing security headers) are not in scope.</li>
+      <li>TLS configuration weaknesses, for example, “weak” cipher suite support or the presence of TLS 1.0 support, are not in scope.</li>
+    </ul>
+  </div>
+  
+  <div>
+    <h3 class="govuk-heading-m">Guidelines for reporting a vulnerability</h3>
+    <p>When you are investigating and reporting the vulnerability on a government website or domain, you must not:</p>
+    <ul>
+      <li>break the law</li>
+      <li>access unnecessary or excessive amounts of data</li>
+      <li>modify data</li>
+      <li>use high-intensity invasive or destructive scanning tools to find vulnerabilities</li>
+      <li>try a denial of service - for example overwhelming a service with a high volume of requests</li>
+      <li>disrupt services or systems</li>
+      <li>tell other people about the vulnerability you have found until we have disclosed it</li>
+      <li>social engineer, phish or physically attack our staff or infrastructure</li>
+      <li>demand money to disclose a vulnerability</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="govuk-heading-m">How to report a vulnerability</h3>
+    <p>Include in your report:</p>
+    <ul>
+      <li>the IP address and/or URL of the page where you found the vulnerability</li>
+      <li>a description of the type of vulnerability - for example, XSS vulnerability</li>
+      <li>details of the steps we need to take to reproduce the vulnerability</li>
+      <li>screenshots or logs if you have them</li>
+    </ul>
+  </div>
+
+</main>
+{% endblock %}

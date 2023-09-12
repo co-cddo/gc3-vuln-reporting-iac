@@ -1,0 +1,86 @@
+[
+    {
+        "name": "D4rkrai",
+        "date": "2023-06-12",
+        "year": "2023",
+        "vulnerability": "Reported a refelected XSS vulnerability in a GOV.UK hosted site"
+    },
+    {
+        "name": "Christophe Tafani-Dereeper",
+        "date": "2023-06-07",
+        "year": "2023",
+        "vulnerability": "Reported a security misconfiguration in a GOV.UK AWS service"
+    },
+    {
+        "name": "Rajesh Thapa",
+        "date": "2023-05-16",
+        "year": "2023",
+        "vulnerability": "Potential takeover vulnerability within data.gov.uk prototype"
+    },
+    {
+        "name": "Sanjok Karki (thesanjok)",
+        "date": "2023-04-11",
+        "year": "2023",
+        "vulnerability": "Reported a Sensitive Information Disclosure vulnerability to Cabinet Office"
+    },
+    {
+        "name": "Mitchell Robson",
+        "date": "2023-02-03",
+        "year": "2023",
+        "vulnerability": "Reported a sub-domain takeover vulnerability for Cabinet Office services"
+    },
+    {
+        "name": "Corrie Sloot",
+        "date": "2022-12-01",
+        "year": "2022",
+        "vulnerability": "Found DNS misconfiguration for Government Communication Services"
+    },
+    {
+        "name": "Ilie Alexandru",
+        "date": "2022-10-10",
+        "year": "2022",
+        "vulnerability": "Reported a XSS vulnerability in a GOV.UK hosted site"
+    },
+    {
+        "name": "Souvik Kandar",
+        "date": "2022-10-05",
+        "year": "2022",
+        "vulnerability": "Found a security misconfiguration for the civil service learning platform"
+    },
+    {
+        "name": "Jonathan Leitschuh",
+        "date": "2020-02-11",
+        "year": "2020",
+        "vulnerability": "Potential MITM using HTTP to resolve some GOV.UK Pay Maven dependencies"
+    },
+    {
+        "name": "Artem Smotrakov",
+        "date": "2021-07-21",
+        "year": "2021",
+        "vulnerability": "Potential timing attack on GOV.UK Pay Webhook signature checks"
+    },
+    {
+        "name": "Mohd.Danish Abid",
+        "date": "2022-01-17",
+        "year": "2022",
+        "vulnerability": "Potential directory security misconfiguration on gdscareers.gov.uk"
+    },
+    {
+        "name": "Ayush Juneja",
+        "date": "2022-05-27",
+        "year": "2022",
+        "vulnerability": "Potential vulnerability with GOV.UK contact forms"
+    },
+    {
+        "name": "Michael Minchinton",
+        "date": "2022-06-06",
+        "year": "2022",
+        "vulnerability": "Cached URLs linking to sensitive files on a GOV.UK service"
+    },
+    {
+        "name": "Tom Samson",
+        "date": "2022-06-06",
+        "year": "2022",
+        "vulnerability": "Potential vulnerability to Log4j exploit in GOV.UK hosted application"
+    }
+]

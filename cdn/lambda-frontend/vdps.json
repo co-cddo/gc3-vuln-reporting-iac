@@ -1,0 +1,35 @@
+[
+    {
+        "id": "1",
+        "organisation": "Government Cyber Coordination Centre (GC3)",
+        "h1": "https://hackerone.com/2e6793b1-d580-4172-9ba3-04c98cdfb478/embedded_submissions/new",
+        "domains": [
+            "security.gov.uk"
+        ],
+        "sectxt_url": "/.well-known/security.txt",
+        "policy_url": "/policy/gc3",
+        "default": true,
+        "submit_text": "If you come across a vulnerability in a UK government online service or asset, you can report it to the GC3. They will assess the issue and try to locate the service or asset owner to relay your findings."
+    },
+    {
+        "id": "2",
+        "organisation": "Cabinet Office",
+        "h1": "https://hackerone.com/44c348eb-e030-4273-b445-d4a2f6f83ba8/embedded_submissions/new",
+        "webpage": "https://www.gov.uk/help/report-vulnerability",
+        "domains": [
+            "www.gov.uk",
+            "cabinetoffice.gov.uk",
+            "digital.cabinet-office.gov.uk"
+        ]
+    },
+    {
+        "id": "3",
+        "organisation": "National Cyber Security Centre (NCSC)",
+        "h1": "https://hackerone.com/2bb1fbb9-ca3d-406d-a49a-4807fb73ffc1/embedded_submissions/new",
+        "webpage": "https://www.ncsc.gov.uk/information/vulnerability-reporting",
+        "sectxt_url": "https://www.ncsc.gov.uk/.well-known/security.txt",
+        "domains": [
+            "ncsc.gov.uk"
+        ]
+    }
+]

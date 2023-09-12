@@ -1,0 +1,23 @@
+{% extends "_primary.html" %}
+
+{% block content %}
+<main class="govuk-main-wrapper govuk-body " id="main-content" role="main">
+  <h2 class="govuk-heading-l">Government Organisations</h2>
+  
+  <div>
+    <h3 class="govuk-heading-m">Check a request from the Government Cyber Coordination Centre (GC3)</h3>
+    <p>If you have recieved a vulnerability notification from the GC3, it should have come from the email vm@gc3.security.gov.uk with a "GC3-####" reference. To verify a communication or if you have any other questions, submit a request via the my-gc3 portal or send a new email (do not reply) to vm@gc3.security.gov.uk.</p>
+  </div>
+
+  <div>
+    <h3 class="govuk-heading-m">How to add vulnerability disclose programme details</h3>
+    <p>If you are a government organisation you can enroll your vulnerability disclose programme or contact details by creating an issue or pull request against the <a href="https://github.com/co-cddo/gccc-vrs-iac" class="govuk-link" ref="noreferrer noopener">co-cddo/gccc-vrs-iac GitHub repository</a>.</p>
+  </div>
+  
+  <div>
+    <h3 class="govuk-heading-m">How to implement the security.txt</h3>
+    <p>You can configure a redirect to the central <a href="/.well-known/security.txt" class="govuk-link">security.txt</a> in a number of ways. See the <a href="https://github.com/co-cddo/implement-security.txt" class="govuk-link" ref="noreferrer noopener">co-cddo/implement-security.txt GitHub repository for guidance and code</a>.</p>
+  </div>
+
+</main>
+{% endblock %}

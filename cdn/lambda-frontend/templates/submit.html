@@ -1,0 +1,92 @@
+{% extends "_primary.html" %}
+
+{% block content %}
+<main class="govuk-main-wrapper govuk-body " id="main-content" role="main">
+  <h2 class="govuk-heading-l">Submit a report</h2>
+
+  {%- if step == 1 %}
+  <div>
+    <p>The UK government is made up of many organisations. This form can help you in submitting your report to the right place.</p>
+  </div>
+
+  <form method="post">
+    <input type="hidden" id="csrf_form" name="csrf_form" value="{{ csrf_form }}" />
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="domain">
+          Enter the vulnerable asset's domain
+        </label>
+      </h3>
+      <input class="govuk-input" id="domain" name="domain" type="domain" maxlength="255">
+    </div>
+
+    <button class="govuk-button" data-module="govuk-button" name="button" value="continue" type="submit">Continue</button>
+    <button class="govuk-button govuk-button--secondary" data-module="govuk-button" name="button" value="skip" type="submit">Skip</button>
+  </form>
+  {%- elif step == 2 %}
+  <div>
+
+    <p>
+      {%- if domain_sent %}We couldn't work out the organisation from the domain provided.<br>{%- endif %}
+      You can choose from the below list of organisations to find reporting information.
+    </p>
+    
+    
+    <form method="post">
+      <input type="hidden" id="csrf_form" name="csrf_form" value="{{ csrf_form }}" />
+      <div class="govuk-form-group">
+        <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="organisation">
+            Select an organisation
+          </label>
+        </h3>
+        <select class="govuk-select" id="organisation" name="organisation">
+            <option value="">Not sure or other</option>
+            {%- for vdp in vdps %}
+            <option value="{{ vdp['id'] }}">{{ vdp['organisation'] }}</option>
+            {%- endfor %}
+        </select>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button" type="submit" name="button" value="continue-org">Continue</button>
+      <a href="/submit" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">Start again</a>
+    </form>
+  </div>
+  {%- elif step == 3 %}
+    <h3 class="govuk-heading-m">Report to the {{ vdp["organisation"] }}</h3>
+
+    {%- if "submit_text" in vdp and vdp["submit_text"] %}
+    <p>{{ vdp["submit_text"] }}</p>
+    {%- endif %}
+
+    <ul>
+      {%- if "policy_url" in vdp and vdp["policy_url"] %}
+      <li>
+        See the <a class="govuk-link" ref="noopener noreferrer" href="{{ vdp['policy_url'] }}">vulnerability reporting policy</a>
+      </li>
+      {%- endif %}
+      {%- if "h1" in vdp and vdp["h1"] %}
+      <li>
+        <a class="govuk-link" ref="noopener noreferrer" href="{{ vdp['h1'] }}">Submit via HackerOne</a>
+      </li>
+      {%- endif %}
+      {%- if "webpage" in vdp and vdp["webpage"] %}
+      <li>
+        Find out more from <a class="govuk-link" ref="noopener noreferrer" href="{{ vdp['webpage'] }}">{{ vdp["organisation"] }} website</a>
+      </li>
+      {%- endif %}
+      {%- if "email" in vdp and vdp["email"] %}
+      <li>
+        Email <a class="govuk-link" ref="noopener noreferrer" href="mailto:{{ vdp['email'] }}">{{ vdp["email"] }}</a>
+      </li>
+      {%- endif %}
+      {%- if "sectxt_url" in vdp and vdp["sectxt_url"] %}
+      <li>
+        See the <a class="govuk-link" ref="noopener noreferrer" href="{{ vdp['sectxt_url'] }}">security.txt</a>
+      </li>
+      {%- endif %}
+    </ul>
+
+    <a href="/submit" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">Start again</a>
+  {%- endif %}
+
+</main>
+{% endblock %}
