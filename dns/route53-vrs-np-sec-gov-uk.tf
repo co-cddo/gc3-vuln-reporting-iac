@@ -1,8 +1,8 @@
 locals {
   nonprod_domain = "vulnerability-reporting.nonprod-service.security.gov.uk"
   nonprod_tags = {
-    "Service" : "GCCC - VRS - DNS",
-    "Reference" : "https://github.com/co-cddo/gccc-vrs-iac",
+    "Service" : "GC3 - VRS - DNS",
+    "Reference" : "https://github.com/co-cddo/gc3-vuln-reporting-iac",
     "Environment" : "nonprod"
   }
 }
