@@ -3,40 +3,37 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - '**.tf'
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  validate:
+  check:
     runs-on: ubuntu-latest
     name: Terraform fmt check
     outputs:
       CHECK_STATUS: "${{ env.CHECK_STATUS }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: Fetch changed files
-        id: pr_files
-        uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'space-delimited'
-      - name: Configure terraform 
+      - name: Configure Terraform 
         uses: hashicorp/setup-terraform@v2
-      - name: Validate terraform fmt
+      - name: Run Terraform fmt
         run: | 
           set +e 
           echo "CHECK_STATUS=0" >> $GITHUB_ENV
-          for changed_file in ${{ steps.pr_files.outputs.added_modified }}; do 
-            echo "Checking Terraform fmt on ${changed_file}..."
-            if [[ $changed_file == *.tf ]]; then 
-              terraform fmt -check $changed_file
+          for tf_file in $(find . -name '*.tf' -not -path "*/.*"); do 
+            echo "Checking Terraform fmt on ${tf_file}..."
+            if [[ $tf_file == *.tf ]]; then 
+              terraform fmt -check $tf_file
               FMT_STATUS=$(echo $?)
 
               if [[ $FMT_STATUS -ne 0 ]]; then
-                echo "❌ Terraform fmt failed - ${changed_file}" >> $GITHUB_STEP_SUMMARY
+                echo "❌ Terraform fmt failed - ${tf_file}" >> $GITHUB_STEP_SUMMARY
                 echo "CHECK_STATUS=1" >> $GITHUB_ENV
               fi 
             fi
