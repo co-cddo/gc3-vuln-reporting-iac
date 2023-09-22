@@ -8,7 +8,7 @@ element.onclick = function() {
 var emails = document.getElementsByClassName('email');
 for (var i = 0; i < emails.length; i++) {
   var email = emails[i].innerText.replace("[at]", "@");
-  emails[i].innerHTML = '<a href="mailto:'+ email +'">'+ email +"</a>";
+  emails[i].innerHTML = '<a class="govuk-link" href="mailto:'+ email +'">'+ email +"</a>";
 }
 
 function hackerone_onerror() {
