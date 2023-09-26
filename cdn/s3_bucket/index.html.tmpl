@@ -59,47 +59,20 @@
       </div>
 
       <main class="govuk-body" id="main-content" role="main">
-        <h1>Vulnerability Reporting</h1>
+        <h1>Vulnerability Reporting Service</h1>
         <div>
           <p>
-            A vulnerability is a technical issue with a government website or domain that attackers or hackers could use to exploit the service and its users.
-            You will not be paid a reward for reporting a vulnerability (known as a ‘bug bounty’).
+            Government Cyber Coordination Centre (GC3) is the UK government’s focal point for cross government collaboration on operational cyber security. We have a vital purpose to coordinate the cyber security efforts across the public sector. GC3 will accept reports on behalf of other UK government system owners where you have been unable to contact them and we will attempt to contact them on your behalf as part of our vision to “Defend As One”.
           </p>
-
-          <h3 class="govuk-heading-m">Scope</h3>
-          <ul>
-            <li>“In scope” vulnerabilities must be original, previously unreported, and not already discovered by internal procedures.</li>
-            <li>Volumetric vulnerabilities are not in scope; this means that simply overwhelming a service with a high volume of requests is not in scope.</li>
-            <li>Reports of non-exploitable vulnerabilities are not in scope.</li>
-            <li>Reports indicating that our services do not fully align with “best practice” (for example, missing security headers) are not in scope.</li>
-            <li>TLS configuration weaknesses, for example, “weak” cipher suite support or the presence of TLS 1.0 support, are not in scope.</li>
-          </ul>
-
-          <h3 class="govuk-heading-m">Guidelines for reporting a vulnerability</h3>
-
-          <p>When you are investigating and reporting the vulnerability on a government website or domain, you must not:</p>
-
-          <ul>
-            <li>break the law</li>
-            <li>access unnecessary or excessive amounts of data</li>
-            <li>modify data</li>
-            <li>use high-intensity invasive or destructive scanning tools to find vulnerabilities</li>
-            <li>try a denial of service - for example overwhelming a service with a high volume of requests</li>
-            <li>disrupt services or systems</li>
-            <li>tell other people about the vulnerability you have found until we have disclosed it</li>
-            <li>social engineer, phish or physically attack our staff or infrastructure</li>
-            <li>demand money to disclose a vulnerability</li>
-          </ul>
+          <p>
+            This vulnerability disclosure policy applies to any vulnerabilities you are considering reporting to us (the "Organisation").  We recommend reading this vulnerability disclosure policy fully before you report a vulnerability and always acting in compliance with it.
+          </p>
+          <p>
+            We value those who take the time and effort to report security vulnerabilities according to this policy. However, we do not offer monetary rewards for vulnerability disclosures. 
+          </p>
           
           <h3 class="govuk-heading-m">How to report a vulnerability</h3>
-          <p>Include in your report:</p>
-
-          <ul>
-            <li>the IP address and/or URL of the page where you found the vulnerability</li>
-            <li>a description of the type of vulnerability - for example, XSS vulnerability</li>
-            <li>details of the steps we need to take to reproduce the vulnerability</li>
-            <li>screenshots or logs if you have them</li>
-          </ul>
+          <p>If you believe you have found a security vulnerability, please submit your report to us using the following link:</p>
 
           <div>
             <a href="/submit" role="button" class="govuk-button" data-module="govuk-button">
@@ -107,6 +80,54 @@
             </a>
           </div>
 
+          <p>In your report please include details of:</p>
+          <ul>
+            <li>the website, IP or page where the vulnerability can be observed</li>
+            <li>a brief description of the type of vulnerability, for example; “XSS vulnerability”</li>
+            <li>steps to reproduce. These should be a benign, non-destructive, proof of concept. This helps to ensure that the report can be triaged quickly and accurately. It also reduces the likelihood of duplicate reports, or malicious exploitation of some vulnerabilities, such as sub-domain takeovers</li>
+          </ul>
+          
+          <h3 class="govuk-heading-m">What to expect</h3>
+          <p>After you have submitted your report, we will respond to your report within five working days and aim to triage your report within ten working days. We’ll also aim to keep you informed of our progress.</p>
+
+          <p>Priority for remediation is assessed by looking at the impact, severity and exploit complexity. Vulnerability reports might take some time to triage or address. You are welcome to enquire on the status but should avoid doing so more than once every 14 days. This allows our teams to focus on the remediation.</p>
+
+          <p>We will notify you when the reported vulnerability is remediated, and you may be invited to confirm that the solution covers the vulnerability adequately.</p>
+
+          <p>Once your vulnerability has been resolved, we welcome requests to disclose your report. We’d like to unify guidance to affected users, so please do continue to coordinate public release with us.</p>
+
+          <h3 class="govuk-heading-m">Guidelines for reporting a vulnerability</h3>
+
+          <p>You must <b>NOT</b>:</p>
+
+          <ul>
+            <li>break any applicable law or regulations</li>
+            <li>access unnecessary, excessive or significant amounts of data.</li>
+            <li>modify data in the Organisation's systems or services.</li>
+            <li>use high-intensity invasive or destructive scanning tools to find vulnerabilities.</li>
+            <li>attempt or report any form of denial of service, e.g. overwhelming a service with a high volume of requests</li>
+            <li>disrupt the Organisation's services or systems</li>
+            <li>submit reports detailing non-exploitable vulnerabilities, or reports indicating that the services do not fully align with “best practice”, for example missing security headers</li>
+            <li>submit reports detailing TLS configuration weaknesses, for example “weak” cipher suite support or the presence of TLS1.0 support</li>
+            <li>communicate any vulnerabilities or associated details other than by means described in the published security.txt</li>
+            <li>social engineer, ‘phish’ or physically attack the Organisation's staff or infrastructure</li>
+            <li>demand financial compensation in order to disclose any vulnerabilities</li>
+            <li>share, redistribute or fail to properly secure data retrieved from the systems or services</li>
+          </ul>
+
+          <p>You must:</p>
+
+          <ul>
+            <li>always comply with data protection rules and must not violate the privacy of the Organisation’s users, staff, contractors, services or systems</li>
+            <li>securely delete all data retrieved during your research as soon as it is no longer required or within one month of the vulnerability being resolved, whichever occurs first (or as otherwise required by data protection law)</li>
+          </ul>
+
+          <h3 class="govuk-heading-m">Legalities</h3>
+
+          <p>This policy is designed to be compatible with common vulnerability disclosure good practice. It does not give you permission to act in any manner that is inconsistent with the law, or which might cause the Organisation or partner organisations to be in breach of any legal obligations.</p>
+
+          <p>However, if legal action is initiated by a third party against you and you have complied with this policy, we can take steps to make it known that your actions were conducted in compliance with this policy.</p>
+          
           <h3 class="govuk-heading-m">Acknowledgements</h3>
 
           <p>We appreciate people reaching out with valid vulnerabilities and are more than happy to include them on an acknowledgement page for their efforts.</p>
@@ -118,6 +139,8 @@
               Go to acknowledegments
             </a>
           </p>
+
+          <p>&nbsp;</p>
         </div>
       </main>
     </div>
