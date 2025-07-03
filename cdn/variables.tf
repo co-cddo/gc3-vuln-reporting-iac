@@ -1,11 +1,6 @@
 locals {
   acknowledgements = [
     [
-      "Miguel Llamazares",
-      "2025-06-26",
-      "Potential Improper Authentication vulnerability in a GOV.UK site"
-    ]
-    [
       "Finley McGregor",
       "2024-10-22",
       "Potential SQL injection vulnerability in multiple GOV.UK sites"
