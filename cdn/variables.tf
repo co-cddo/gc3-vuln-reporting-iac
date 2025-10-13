@@ -3,7 +3,7 @@ locals {
     [
       "Cagri Eser",
       "2025-10-13",
-      "Potential series of Improper Authentication, SQL Injection, and Cross-site Scripting vulnerabilities in multiple GOV.UK sites"
+      "Potential series of vulnerability types across multiple GOV.UK sites"
     ],    
     [
       "Miguel Llamazares",
