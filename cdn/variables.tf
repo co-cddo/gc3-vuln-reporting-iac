@@ -1,9 +1,14 @@
 locals {
   acknowledgements = [
     [
+      "exss",
+      "2026-04-01",
+      "A series of potential business logic vulnerabilities and exposed information across multiple GOV.UK sites"
+    ], 
+    [
       "Cagri Eser",
       "2025-10-13",
-      "Potential series of vulnerability types across multiple GOV.UK sites"
+      "A series of potential vulnerability types across multiple GOV.UK sites"
     ],    
     [
       "Miguel Llamazares",
