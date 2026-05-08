@@ -1,8 +1,12 @@
-var element = document.getElementsByClassName('back-button')[0];
-element.setAttribute('href', document.referrer);
-element.onclick = function() {
-  history.back();
-  return false;
+const backButtons = document.getElementsByClassName('back-button');
+
+if (backButtons.length > 0) {
+  var element = backButtons[0];
+  element.setAttribute('href', document.referrer);
+  element.onclick = function() {
+    history.back();
+    return false;
+  }
 }
 
 var emails = document.getElementsByClassName('email');

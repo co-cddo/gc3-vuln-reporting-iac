@@ -34,6 +34,32 @@ npm install
 npm test
 ```
 
+#### Deployment
+
+In order to make changes to the CDN contents, for instance front-end changes to the VRS service, you need to:
+
+- make changes locally
+- push them to the nonprod environment using terraform. The nonprod environment is behind http basic auth, and you
+  need to set up credentials as part of the deployment. Choose a username and a password and deploy:
+
+  If you're on MacOS:
+  ```bash
+  export BASICAUTHSTRING = printf '%s:%s' "USERNAME" "PASSWORD" | base64 | tr -d '\n'
+  ```
+
+  on Linux:
+  ```bash
+  printf '%s:%s' "user" "pass" | base64 -w 0
+  ```
+
+  then:
+
+  ```bash
+  terraform apply -var="basicauthstring=$BASICAUTGHSTRING
+  ```
+
+Deployment to the live environment is done manually in Github Actions.
+
 ### Route53 DNS
 
 [dns](dns/) is the management of the Route53 zone and records.
