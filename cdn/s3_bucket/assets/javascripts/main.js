@@ -15,45 +15,21 @@ for (var i = 0; i < emails.length; i++) {
   emails[i].innerHTML = '<a class="govuk-link" href="mailto:'+ email +'">'+ email +"</a>";
 }
 
-function hackerone_onerror() {
-  submit_display_secondary();
-}
+document.querySelector('#organisation-select')?.addEventListener('change', e => {
+  const orgUuid = e.target.value;
+  const pleaseWait = document.createElement('p');
+  pleaseWait.classList.add('govuk-body');
+  pleaseWait.textContent = 'Please wait';
+  setTimeout(() => { pleaseWait.textContent = '' }, 8000);
+  document.getElementById('hackerone-form-container').replaceChildren(pleaseWait);
 
-function submit_display_default_form() {
-  document.getElementById("submit-loading").classList.add("hidden");
-  document.getElementById("submit-default-form").classList.remove("hidden");
-  document.getElementById("submit-secondary-form").classList.add("hidden");
-}
-
-function submit_display_secondary() {
-  document.getElementById("submit-loading").classList.add("hidden");
-  document.getElementById("submit-default-form").classList.add("hidden");
-  document.getElementById("submit-secondary-form").classList.remove("hidden");
-}
-
-var submit_iframe_check;
-var submit_iframe_interval = 1500;
-
-function hackerone_check_form() {
-  document.getElementById("submit-loading").classList.remove("hidden");
-  submit_iframe_check = setInterval(function() {
-    var load_secondary = true;
-    var iframes = document.getElementsByTagName("iframe");
-    if (iframes.length == 1) {
-      try {
-        if (parseInt(iframes[0].style.height.replace("px", "")) > 1000) {
-          load_secondary = false;
-          clearInterval(submit_iframe_check);
-        }
-      } catch (e) {
-        console.log("hackerone_check_form", e);
-      }
-    }
-    if (load_secondary) {
-      submit_display_secondary();
-    } else {
-      submit_display_default_form();
-    }
-    submit_iframe_interval = 500;
-  }, submit_iframe_interval);
-}
+  const script = document.createElement('script');
+  script.src = `https://hackerone.com/${orgUuid}/embedded_submissions/script`;
+  script.async = true;
+  script.type = 'text/javascript';
+  Object.assign(script.dataset, {
+    url: `https://hackerone.com/${orgUuid}/embedded_submissions/new?locale=en`,
+    name: 'h1-embedded-submission'
+  });
+  document.getElementById('hackerone-form-container').appendChild(script);
+});

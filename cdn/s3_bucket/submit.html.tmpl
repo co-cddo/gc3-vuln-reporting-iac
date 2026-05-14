@@ -17,7 +17,7 @@
   %{ if workspace != "prod" }<meta name="robots" content="noindex, nofollow">%{ endif }
 </head>
 
-<body class="govuk-template__body" onload="hackerone_check_form()">
+<body class="govuk-template__body"> <!-- onload="hackerone_check_form()"> -->
   <script>
     document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');
   </script>
@@ -79,25 +79,85 @@
 
     <main class="govuk-main-wrapper govuk-body" id="main-content">
       <h1>Submit</h1>
-      <noscript>
-        <p><a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" role="button" draggable="false" class="govuk-button" data-module="govuk-button" target="_blank" rel="nofollow noreferrer noopener">Submit via HackerOne here</a></p>
-      </noscript>
-      <div id="submit-loading" class="hidden">
-        Loading...
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="sort">
+          Choose an organisation
+        </label>
+
+        <select class="govuk-select" id="organisation-select" name="organisation">
+          <option value=""></option>
+          <option value="2e6793b1-d580-4172-9ba3-04c98cdfb478">Other / organisation not listed</option>
+          <option value="8fa5066c-2688-4bab-890d-6278d81f3360">Bank of England</option>
+          <option value="4faee172-90ab-4690-8e26-104ba0e64fcb">British Library</option>
+          <option value="44c348eb-e030-4273-b445-d4a2f6f83ba8">Cabinet Office</option>
+          <option value="999ae107-1d3c-4d2f-abc2-c9604e0eec5c">Civil Aviation Authority </option>
+          <option value="fb61cc28-69cc-4757-a084-bedd1a9d4352">Climate Change Committee</option>
+          <option value="a22d056b-0a3a-4bf2-89c6-39301dffa0df">Companies House</option>
+          <option value="5c958790-e192-4c6d-a4ae-2ee0d6868f53">Consumer Council for Water</option>
+          <option value="6c9ff411-b7cd-4a05-870d-1b7d27939c1c">Crown Commercial Services</option>
+          <option value="fb292350-7a10-4066-8071-eae07031ba17">Crown Prosecution Service</option>
+          <option value="41ff5198-0e21-4656-9f54-03cce570d7ff">Department for Education</option>
+          <option value="72260595-ec56-4daa-875f-e37d13c3b1e4">Department for Environment, Food and Rural Affairs</option>
+          <option value="d6c9dac8-6bb4-4804-b41f-2ba2e37e5606">Department for Work & Pensions</option>
+          <option value="2680e4cd-0436-42a5-bd2a-37fd86367276">Department for Business and Trade</option>
+          <option value="8fc3625f-bc43-4cbe-99f2-eea411c5c3ce">Driver and Vehicle Standards Agency</option>
+          <option value="ec3e7d1e-dc54-4b21-9942-e26d552216db">England - Local Vulnerability Reporting Service</option>
+          <option value="25467b9f-f63a-4c0e-807e-9c478240cbc2">Food Standards Agency</option>
+          <option value="ac818ab4-dcc1-4f5b-99f6-57df1614f1b9">Foreign, Commonwealth & Development Office</option>
+          <option value="a782f7b5-cb22-4e95-b5e3-941cda933949">Health & Safety Executive</option>
+          <option value="869ae5c8-2bd7-43bf-a704-85927a145f7e">Historic England</option>
+          <option value="616446ee-e63c-45c8-96cd-6ff395639a6c">HM Courts & Tribunal Services (HMCTS)</option>
+          <option value="3ad49ea1-a817-4a0e-87c5-9282e8538d49">HM Land Registry</option>
+          <option value="2363dc59-bfed-4a6f-9faf-a9868dd1566d">HM Revenue & Customs</option>
+          <option value="5b00200a-bbcf-444b-bb29-dee4869a4e55">HM Treasury</option>
+          <option value="2dff9ce7-7d9c-4b2f-92e5-04b9067fa55b">Home Office</option>
+          <option value="6b160f2b-9d4b-4023-b141-60636e6f8b2d">Horserace Bettering Levy Board</option>
+          <option value="1c79f4bb-1d66-4650-9312-3d8b9fbb8391">Imperial War Museum</option>
+          <option value="45c65b7d-0561-49c4-bf79-24e61b93a118">Intellectural Property Office</option>
+          <option value="d5c0582b-bd02-4aea-a7de-cda3b79b1b08">InvestNI</option>
+          <option value="ce2e2446-fcf0-4cc4-b60a-3d0c98df63c8">Met Office</option>
+          <option value="2a42b991-30b3-419b-853a-2b9895da2a1e">Ministry for Housing, Communities & Local Government (MHCLG)</option>
+          <option value="ef81a495-9cb5-49bb-88ec-430fc4cffb90">Ministry of Defence VDP</option>
+          <option value="c532d916-6529-4495-a241-eb7431cfd134">Ministry of Justice</option>
+          <option value="372b1af7-b7a0-4515-9902-8d0305be0a62">National Lottery Heritage Fund</option>
+          <option value="2bb1fbb9-ca3d-406d-a49a-4807fb73ffc1">NCSC UK</option>
+          <option value="53e3b347-8e91-4fba-bc3f-0fd3cb5b4275">NESO</option>
+          <option value="0875f42a-0317-4c04-9d6c-30bf53dcae8a">New Forest National Park Authority</option>
+          <option value="cb55b4bc-da78-4028-9b0f-90ac0bcce23b">NHS Business Services Authority</option>
+          <option value="1a6130fc-761f-4aa1-88ee-817a3c2684ae">NHS England</option>
+          <option value="d38cfce2-ebc5-4845-8ea0-89815b539a2e">NHS National Services Scotland</option>
+          <option value="f02b32cf-e49d-4076-9190-cd5674c28028">NI Gov</option>
+          <option value="939d8cf0-1afd-496f-b035-8997392ddb1c">Office for Nuclear Regulator</option>
+          <option value="55ea9ff2-9603-42e9-9a43-9a49f16fabf1">Office of Road and Rail</option>
+          <option value="3b493770-9361-432c-be0d-cfc0f7f9e58e">ofgem</option>
+          <option value="aa718e06-021b-45e6-ac76-5b90b36cd0a8">Ofqual</option>
+          <option value="16175a13-cc1d-4314-9a3e-36fca557a1da">OFSTED</option>
+          <option value="ed4494e3-5a6e-4429-bbd3-253d71c0203e">OFWAT</option>
+          <option value="62693b6b-2b54-4884-ace7-4a3c463ec182">Ordnance Survey</option>
+          <option value="863348ce-c4eb-4c29-8e4b-253a9f836174">Planning Inspectorate</option>
+          <option value="16654da9-cb03-47ae-be37-4e9e8bd2e7fc">Royal Household</option>
+          <option value="78ccd5b9-4869-4087-ba12-1ebabd3cff99">SC3</option>
+          <option value="c555a7cd-ff6b-467d-ba34-b0cec8e64be3">Scottish Parliament</option>
+          <option value="4cbbe46c-daae-42c7-a3cd-d09ef35669c4">Sport Ground Safety Authority</option>
+          <option value="20de8e5d-0dfc-4ddf-a1c4-f96286bc973e">Student Loan Company</option>
+          <option value="c4c19394-956a-4db3-8e52-801407314fc9">Supremecourt</option>
+          <option value="4bffa73d-48cd-4254-8a53-c05f330d80ee">The Insolvency Service</option>
+          <option value="481ce909-896e-4af5-8841-fc03e097a752">The LegalOmbudsman</option>
+          <option value="9d458421-1a73-4abd-bc02-fa5fc4d76325">The National Archive</option>
+          <option value="52fa7bc0-5356-4c86-9f79-eeb03e1d55cc">The Office of National Statistics</option>
+          <option value="88bff854-1918-4b65-a411-bddab3467d11">The Wallace Collection</option>
+          <option value="7af14fd9-fe4e-4f39-bea1-8f8a364061b8">UK Export Finance</option>
+          <option value="bd0a69ee-c9d5-47ea-990c-b6679a4da96f">UK Hydrographic Office</option>
+          <option value="ffa4a205-065b-4832-8df8-6cdba6b136e5">UK Parliament</option>
+          <option value="8b0247e1-e512-449d-a5a8-d5e79f248d9f">Welsh Gov</option>
+          <option value="56173288-b6bd-4c1b-a66a-fb01f403c8f1">Welsh Parliament</option>
+          <option value="f6aa2981-83e8-44fe-9d6d-c682a2464af0">Westminster Foundation for Democracy</option>
+          <option value="24958ce3-8373-4472-979b-a9eeb356d35c">Wilton Park</option>
+        </select>
       </div>
-      <script type="text/javascript">document.getElementById("submit-loading").classList.remove("hidden");</script>
-      <div id="submit-default-form" class="hidden">
-        <p>
-          If the below form doesn't load correctly, try <a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" rel="nofollow noreferrer noopener" target="_blank">this link to the submission form</a>.<br/>
-        </p>
-        <div class="hackerone-form-container">
-          <script onerror="hackerone_onerror()" async src="https://hackerone.com/${hackerone_form_id}/embedded_submissions/script" data-url="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" data-name="h1-embedded-submission" type="text/javascript"></script>
-        </div>
-      </div>
-      <div id="submit-secondary-form" class="hidden">
-        <a href="https://hackerone.com/${hackerone_form_id}/embedded_submissions/new" role="button" draggable="false" class="govuk-button" data-module="govuk-button" target="_blank" rel="nofollow noreferrer noopener">Submit via HackerOne here</a>
-      </div>
-      <a href="/" role="button" draggable="false" class="govuk-button back-button govuk-button--secondary" data-module="govuk-button">Back</a>
+
+      <div id="hackerone-form-container"></div>
     </main>
   </div>
   <footer class="govuk-template__footer">
