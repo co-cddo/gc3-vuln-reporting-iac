@@ -15,8 +15,8 @@ for (var i = 0; i < emails.length; i++) {
   emails[i].innerHTML = '<a class="govuk-link" href="mailto:'+ email +'">'+ email +"</a>";
 }
 
-document.querySelector('#organisation-select')?.addEventListener('change', e => {
-  const orgUuid = e.target.value;
+
+const embedHackerOneForm = function(orgUuid) {
   const pleaseWait = document.createElement('p');
   pleaseWait.classList.add('govuk-body');
   pleaseWait.textContent = 'Please wait';
@@ -32,4 +32,19 @@ document.querySelector('#organisation-select')?.addEventListener('change', e => 
     name: 'h1-embedded-submission'
   });
   document.getElementById('hackerone-form-container').appendChild(script);
+};
+
+
+document.querySelector('#organisation-select')?.addEventListener('change', e => {
+  const orgUuid = e.target.value;
+
+  // Safari doesn't allow iframes to set cookies, so in that case we redirect instead
+  // To identify "true" Safari, we must check for the presence of the string 'Safari' while
+  // simultaneously ensuring the absence of 'Chrome' or 'Chromium'.
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isSafari) {
+    window.location.href = `https://hackerone.com/${orgUuid}/embedded_submissions/new?locale=en`;
+  } else {
+    embedHackerOneForm(orgUuid);
+  }
 });
