@@ -33,7 +33,7 @@ cd cdn/functions/router/
 npm install
 npm test
 ```
-
+cd
 #### Deployment
 
 In order to make changes to the CDN contents, for instance front-end changes to the VRS service, you need to:
@@ -49,10 +49,10 @@ In order to make changes to the CDN contents, for instance front-end changes to 
 
   on Linux:
   ```bash
-  printf '%s:%s' "user" "pass" | base64 -w 0
+  export BASICAUTHSTRING = printf '%s:%s' "user" "pass" | base64 -w 0
   ```
 
-  then:
+  then, change to the `cdn` directory then:
 
   ```bash
   terraform apply -var="basicauthstring=$BASICAUTGHSTRING
