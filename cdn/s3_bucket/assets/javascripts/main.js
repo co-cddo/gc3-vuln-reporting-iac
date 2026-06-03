@@ -16,7 +16,7 @@ for (var i = 0; i < emails.length; i++) {
 }
 
 
-const embedHackerOneForm = function() {
+const embedHackerOneForm = function(orgUuid) {
   const pleaseWait = document.createElement('p');
   pleaseWait.classList.add('govuk-body');
   pleaseWait.textContent = 'Please wait';
@@ -45,6 +45,6 @@ document.querySelector('#organisation-select')?.addEventListener('change', e => 
   if (isSafari) {
     window.location.href = `https://hackerone.com/${orgUuid}/embedded_submissions/new?locale=en`;
   } else {
-    embedHackerOneForm();
+    embedHackerOneForm(orgUuid);
   }
 });
