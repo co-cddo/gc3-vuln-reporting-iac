@@ -2,8 +2,8 @@ locals {
   acknowledgements = [
     [
       "Chris Nesbitt-Smith",
-      "2026-06-01",
-      "Potential Improper Authentication vulnerability in multiple GOV.UK sites"
+      "2026-06-01, 2026-11-16",
+      "Potential Improper Authentication vulnerability in multiple GOV.UK sites. / A series of poorly secured credentials across multiple codebases in the public sector."
     ], 
     [
       "exss",
